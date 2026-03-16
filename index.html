@@ -7,6 +7,7 @@
 <title>Tuten Built – Restore • Rebuild • Renew</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="tutenbuiltfooter.png">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   :root {
     --navy:        #242e3b;   /* brand dark */
@@ -498,264 +499,101 @@
     margin-top: 0.25rem;
   }
 
-  /* CONTACT / FORM */
+  /* CONTACT */
   .contact {
     background: var(--cream);
+    text-align: center;
     padding: 6rem 2rem;
   }
 
-  .contact-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 4rem;
-  }
+  .contact .section-title { font-size: clamp(2rem, 4vw, 3rem); }
 
-  .contact-header .section-title { font-size: clamp(2rem, 4vw, 3rem); }
-
-  .contact-header p {
+  .contact p {
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
     font-size: 1.2rem;
     line-height: 1.8;
     color: #667;
     font-weight: 300;
-    margin-top: 0.5rem;
   }
 
-  /* Form wrapper */
-  .inquiry-form {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  /* Bootstrap modal brand overrides */
+  .inquiry-modal .modal-header {
+    background: var(--navy);
+    border-bottom: 3px solid var(--green);
+    padding: 1.25rem 1.75rem;
   }
 
-  .form-section {
-    background: #fff;
-    border: 1px solid rgba(129,186,35,0.2);
-    padding: 2.5rem 2.5rem 2rem;
-    position: relative;
-  }
-
-  .form-section-label {
+  .inquiry-modal .modal-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .inquiry-modal .modal-title small {
+    display: block;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--green-light);
+    letter-spacing: 0.1em;
+    margin-top: 0.15rem;
+  }
+
+  .inquiry-modal .btn-close { filter: invert(1) grayscale(1) brightness(2); }
+
+  .inquiry-modal .modal-body { background: #f8faf4; padding: 2rem 2rem; }
+
+  .inquiry-modal .modal-footer {
+    background: var(--navy);
+    border-top: 2px solid rgba(129,186,35,0.3);
+    padding: 1rem 1.75rem;
+  }
+
+  /* Section headers inside modal */
+  .fs-head {
+    border-left: 4px solid var(--green);
+    padding-left: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .fs-head h6 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--navy);
-    margin-bottom: 0.25rem;
+    margin: 0;
   }
 
-  .form-section-sub {
-    font-size: 0.95rem;
-    color: #889;
+  .fs-head small {
+    font-family: 'Crimson Pro', serif;
     font-style: italic;
-    margin-bottom: 1.75rem;
-    font-weight: 300;
-  }
-
-  .form-section-accent {
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--green);
-  }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem 2rem;
-  }
-
-  .form-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
-  .form-grid.one-col   { grid-template-columns: 1fr; }
-
-  .field-full { grid-column: 1 / -1; }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .form-field label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--navy-mid);
-  }
-
-  .form-field label .req {
-    color: var(--green-dark);
-    margin-left: 2px;
-  }
-
-  .form-field input,
-  .form-field select,
-  .form-field textarea {
-    font-family: 'Crimson Pro', Georgia, serif;
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--text);
-    background: var(--warm-white);
-    border: 1.5px solid rgba(36,46,59,0.15);
-    padding: 0.65rem 0.85rem;
-    outline: none;
-    transition: border-color 0.25s, box-shadow 0.25s;
-    width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-
-  .form-field input::placeholder,
-  .form-field textarea::placeholder { color: #aab; }
-
-  .form-field input:focus,
-  .form-field select:focus,
-  .form-field textarea:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(129,186,35,0.12);
-    background: #fff;
-  }
-
-  .form-field textarea { resize: vertical; min-height: 110px; }
-
-  .select-wrap { position: relative; }
-
-  .select-wrap::after {
-    content: '▾';
-    position: absolute;
-    right: 0.85rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--green-dark);
-    pointer-events: none;
-    font-size: 0.8rem;
-  }
-
-  /* Radio / Checkbox groups */
-  .radio-group, .checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.25rem;
-    margin-top: 0.25rem;
-  }
-
-  .radio-group label,
-  .checkbox-group label {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 1rem;
-    font-weight: 300;
-    text-transform: none;
-    letter-spacing: 0;
-    color: var(--text);
-    cursor: pointer;
-  }
-
-  .radio-group input[type="radio"],
-  .checkbox-group input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
-    accent-color: var(--green);
-    border: none;
-    flex-shrink: 0;
-  }
-
-  /* File upload */
-  .file-upload-wrap {
-    border: 2px dashed rgba(129,186,35,0.35);
-    background: var(--warm-white);
-    padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.25s, background 0.25s;
-    position: relative;
-  }
-
-  .file-upload-wrap:hover {
-    border-color: var(--green);
-    background: var(--green-pale);
-  }
-
-  .file-upload-wrap input[type="file"] {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: transparent;
-    padding: 0;
-  }
-
-  .file-upload-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-
-  .file-upload-text {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     color: #889;
     font-weight: 300;
   }
 
-  .file-upload-text strong { color: var(--green-dark); }
-
-  /* Character count hint */
-  .field-hint {
-    font-size: 0.82rem;
-    color: #aab;
-    font-style: italic;
-    margin-top: 0.2rem;
+  /* Bootstrap focus override → brand green */
+  .inquiry-modal .form-control:focus,
+  .inquiry-modal .form-select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 0.2rem rgba(129,186,35,0.2);
   }
 
-  /* Submit row */
-  .form-submit-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
+  .inquiry-modal .form-check-input:checked {
+    background-color: var(--green);
+    border-color: var(--green-dark);
   }
 
-  .form-submit-row .btn-primary {
-    font-size: 1.05rem;
-    padding: 1.1rem 3.5rem;
-    letter-spacing: 0.15em;
+  .inquiry-modal .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(129,186,35,0.25);
   }
 
-  .form-submit-note {
-    font-size: 0.9rem;
-    color: #aab;
-    font-style: italic;
-    font-weight: 300;
-  }
-
-  /* Success message */
-  .form-success {
-    display: none;
-    background: var(--green-pale);
-    border: 1.5px solid var(--green);
-    padding: 2rem 2.5rem;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .form-success h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-
-  .form-success p { color: #556; font-size: 1.05rem; line-height: 1.7; }
-
-  @media (max-width: 700px) {
-    .form-grid,
-    .form-grid.three-col { grid-template-columns: 1fr; }
-    .form-section { padding: 2rem 1.25rem 1.5rem; }
-  }
+  /* Section divider inside modal */
+  .modal-section { margin-bottom: 2rem; }
+  .modal-section:last-of-type { margin-bottom: 0; }
 
   /* FOOTER */
   footer {
@@ -820,7 +658,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#values">Values</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" data-bs-toggle="modal" data-bs-target="#inquiryModal">Get a Quote</a></li>
   </ul>
 </nav>
 
@@ -973,8 +811,741 @@
   <span class="section-label">Get Started</span>
   <h2 class="section-title">Ready to Build Something Lasting?</h2>
   <div class="divider" style="margin: 1.5rem auto;"></div>
-  <p>Every great project starts with a conversation. Let's talk about what you're looking to restore, rebuild, or renew.</p>
-  <a href="mailto:info@tutenbuilt.com" class="btn-primary">Start the Conversation</a>
+  <p>Every great project starts with a conversation. Tell us about your project and we'll be in touch within one business day.</p>
+  <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#inquiryModal">
+    Request a Free Consultation
+  </button>
+</section>
+
+<!--
+  FORM SETUP: This form uses Formspree (https://formspree.io) to handle email delivery.
+  1. Create a free account at formspree.io
+  2. Create a new form and copy your Form ID
+  3. Replace "YOUR_FORM_ID" in the action attribute with your actual Form ID
+  e.g. action="https://formspree.io/f/xpwzabcd"
+-->
+
+<!-- INQUIRY MODAL -->
+<div class="modal fade inquiry-modal" id="inquiryModal" tabindex="-1" aria-labelledby="inquiryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <div class="modal-title" id="inquiryModalLabel">
+          Request a Free Consultation
+          <small>Restore • Rebuild • Renew</small>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Success state (hidden until submit) -->
+        <div id="formSuccess" class="alert d-none text-center py-4" style="background:var(--green-pale);border:1.5px solid var(--green);">
+          <h4 class="mb-2" style="font-family:'Playfair Display',serif;color:var(--navy);">Thank You!</h4>
+          <p class="mb-0" style="color:#556;">Your inquiry has been received. We'll review your details and be in touch shortly.</p>
+        </div>
+
+        <form id="inquiryForm"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST"
+              enctype="multipart/form-data"
+              novalidate>
+
+          <!-- 1. CONTACT INFORMATION -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>Contact Information</h6>
+              <small>Tell us who you are and how to reach you.</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="full_name" placeholder="Jane Smith" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" name="phone" placeholder="(555) 000-0000" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" name="email" placeholder="jane@example.com" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Preferred Contact Method <span class="text-danger">*</span></label>
+                <div class="d-flex flex-wrap gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preferred_contact" id="contactPhone" value="Phone" required>
+                    <label class="form-check-label" for="contactPhone">Phone</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preferred_contact" id="contactText" value="Text">
+                    <label class="form-check-label" for="contactText">Text</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="preferred_contact" id="contactEmail" value="Email">
+                    <label class="form-check-label" for="contactEmail">Email</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Best Time to Contact <span class="text-danger">*</span></label>
+                <div class="d-flex flex-wrap gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="best_time" id="timeAM" value="Early Morning (7–9 AM)">
+                    <label class="form-check-label" for="timeAM">Early Morning (7–9 AM)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="best_time" id="timeMorning" value="Morning (9 AM–12 PM)">
+                    <label class="form-check-label" for="timeMorning">Morning (9 AM–12 PM)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="best_time" id="timeAfternoon" value="Afternoon (12–5 PM)">
+                    <label class="form-check-label" for="timeAfternoon">Afternoon (12–5 PM)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="best_time" id="timeEvening" value="Evening (5–8 PM)">
+                    <label class="form-check-label" for="timeEvening">Evening (5–8 PM)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="best_time" id="timeWeekends" value="Weekends">
+                    <label class="form-check-label" for="timeWeekends">Weekends</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- 2. PROJECT LOCATION -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>Project Location</h6>
+              <small>Where will the work take place?</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-semibold">Street / Property Address <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="project_address" placeholder="123 Main St" required>
+              </div>
+              <div class="col-md-5">
+                <label class="form-label fw-semibold">City <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="project_city" placeholder="City" required>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label fw-semibold">State <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="project_state" placeholder="GA" required>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label fw-semibold">ZIP Code <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="project_zip" placeholder="30301" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Property Type</label>
+                <select class="form-select" name="property_type">
+                  <option value="">Select one…</option>
+                  <option>Primary Residence</option>
+                  <option>Secondary / Vacation Home</option>
+                  <option>Rental Property</option>
+                  <option>Commercial Property</option>
+                  <option>New Construction Lot</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Is the property currently occupied?</label>
+                <div class="d-flex gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="occupied" id="occYes" value="Yes">
+                    <label class="form-check-label" for="occYes">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="occupied" id="occNo" value="No">
+                    <label class="form-check-label" for="occNo">No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- 3. PROJECT DETAILS -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>Project Details</h6>
+              <small>Help us understand the scope and nature of your project.</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-semibold">Type of Work <span class="text-danger">*</span></label>
+                <div class="d-flex flex-wrap gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtReno" value="Home Renovation">
+                    <label class="form-check-label" for="wtReno">Home Renovation</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtCustom" value="Custom Home Construction">
+                    <label class="form-check-label" for="wtCustom">Custom Home Construction</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtStorm" value="Storm / Insurance Repair">
+                    <label class="form-check-label" for="wtStorm">Storm / Insurance Repair</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtAddition" value="Addition or Expansion">
+                    <label class="form-check-label" for="wtAddition">Addition or Expansion</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtRemodel" value="Major Remodel">
+                    <label class="form-check-label" for="wtRemodel">Major Remodel</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtStructural" value="Structural Repairs">
+                    <label class="form-check-label" for="wtStructural">Structural Repairs</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtOutdoor" value="Outdoor Living / Hardscaping">
+                    <label class="form-check-label" for="wtOutdoor">Outdoor Living / Hardscaping</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtEnergy" value="Energy Efficiency Upgrades">
+                    <label class="form-check-label" for="wtEnergy">Energy Efficiency Upgrades</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtAging" value="Aging-in-Place Improvements">
+                    <label class="form-check-label" for="wtAging">Aging-in-Place Improvements</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="work_type" id="wtOther" value="Other">
+                    <label class="form-check-label" for="wtOther">Other</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Describe Your Project <span class="text-danger">*</span></label>
+                <textarea class="form-control" name="project_description" rows="4" placeholder="Please describe what you're hoping to accomplish. The more detail you can share, the better we can prepare for our conversation." required></textarea>
+                <div class="form-text">Include areas of the home, specific goals, materials in mind, or any challenges you're aware of.</div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- 4. BUDGET & TIMELINE -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>Budget &amp; Timeline</h6>
+              <small>Sharing a range helps us match the right scope and solutions to your project.</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Approximate Budget Range</label>
+                <select class="form-select" name="budget_range">
+                  <option value="">Select a range…</option>
+                  <option>Under $25,000</option>
+                  <option>$25,000 – $50,000</option>
+                  <option>$50,000 – $100,000</option>
+                  <option>$100,000 – $250,000</option>
+                  <option>$250,000 – $500,000</option>
+                  <option>$500,000+</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Desired Start Date</label>
+                <select class="form-select" name="desired_start">
+                  <option value="">Select timing…</option>
+                  <option>As soon as possible</option>
+                  <option>Within 1–3 months</option>
+                  <option>Within 3–6 months</option>
+                  <option>6–12 months from now</option>
+                  <option>More than 12 months out</option>
+                  <option>Flexible / Not sure</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Is there a hard completion deadline?</label>
+                <div class="d-flex gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hard_deadline" id="dlYes" value="Yes">
+                    <label class="form-check-label" for="dlYes">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hard_deadline" id="dlNo" value="No">
+                    <label class="form-check-label" for="dlNo">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Deadline Details (if applicable)</label>
+                <input type="text" class="form-control" name="deadline_details" placeholder="e.g. Must be complete before Dec 2025">
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- 5. PROJECT PLANNING -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>Project Planning</h6>
+              <small>Help us understand where you are in the planning process.</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Current Stage of Planning</label>
+                <select class="form-select" name="planning_stage">
+                  <option value="">Select one…</option>
+                  <option>Just exploring ideas</option>
+                  <option>Have a concept, need guidance</option>
+                  <option>Have plans / drawings ready</option>
+                  <option>Have permits approved</option>
+                  <option>Ready to start immediately</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Do you have architectural plans or drawings?</label>
+                <div class="d-flex flex-wrap gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="has_plans" id="plansYes" value="Yes, complete">
+                    <label class="form-check-label" for="plansYes">Yes, complete</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="has_plans" id="plansProgress" value="In progress">
+                    <label class="form-check-label" for="plansProgress">In progress</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="has_plans" id="plansNo" value="No">
+                    <label class="form-check-label" for="plansNo">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Have you worked with a contractor before?</label>
+                <div class="d-flex gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prior_contractor" id="priorYes" value="Yes">
+                    <label class="form-check-label" for="priorYes">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="prior_contractor" id="priorNo" value="No">
+                    <label class="form-check-label" for="priorNo">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Are you getting multiple bids?</label>
+                <div class="d-flex flex-wrap gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="multiple_bids" id="bidsYes" value="Yes">
+                    <label class="form-check-label" for="bidsYes">Yes</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="multiple_bids" id="bidsNo" value="No">
+                    <label class="form-check-label" for="bidsNo">No</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="multiple_bids" id="bidsUnsure" value="Not sure">
+                    <label class="form-check-label" for="bidsUnsure">Not sure</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Additional Planning Notes</label>
+                <textarea class="form-control" name="planning_notes" rows="3" placeholder="Permits, HOA approvals, financing status, or anything else we should know…"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- 6. PHOTOS & ADDITIONAL INFO -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>Photos &amp; Additional Information</h6>
+              <small>Photos of the existing space or inspiration images are a great head start.</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-semibold">Upload Photos (optional)</label>
+                <input class="form-control" type="file" name="photos" accept="image/*,.pdf" multiple>
+                <div class="form-text">Current space, inspiration photos, drawings, or insurance documents. JPG, PNG, PDF — up to 10 MB each.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Additional Information</label>
+                <textarea class="form-control" name="additional_info" rows="3" placeholder="Anything else you'd like us to know—special considerations, access restrictions, prior damage, etc."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- 7. MARKETING INFO -->
+          <div class="modal-section">
+            <div class="fs-head">
+              <h6>One Last Thing</h6>
+              <small>Help us understand how people find us.</small>
+            </div>
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="form-label fw-semibold">How did you hear about Tuten Built?</label>
+                <div class="d-flex flex-wrap gap-3 mt-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcReferral" value="Personal Referral">
+                    <label class="form-check-label" for="srcReferral">Personal Referral</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcGoogle" value="Google Search">
+                    <label class="form-check-label" for="srcGoogle">Google Search</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcFacebook" value="Facebook">
+                    <label class="form-check-label" for="srcFacebook">Facebook</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcInstagram" value="Instagram">
+                    <label class="form-check-label" for="srcInstagram">Instagram</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcNextdoor" value="Nextdoor">
+                    <label class="form-check-label" for="srcNextdoor">Nextdoor</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcSign" value="Job Site Sign">
+                    <label class="form-check-label" for="srcSign">Saw a Job Site Sign</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcRealtor" value="Real Estate Agent">
+                    <label class="form-check-label" for="srcRealtor">Real Estate Agent</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcInsurance" value="Insurance Agent">
+                    <label class="form-check-label" for="srcInsurance">Insurance Agent</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="referral_source" id="srcOther" value="Other">
+                    <label class="form-check-label" for="srcOther">Other</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Referral Name (if applicable)</label>
+                <input type="text" class="form-control" name="referral_name" placeholder="Who referred you? We love to say thank you.">
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="consent_followup" id="consent" value="yes">
+                  <label class="form-check-label" for="consent">
+                    I agree to be contacted by Tuten Built regarding my inquiry. We respect your privacy and will never share your information.
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div><!-- /.modal-body -->
+
+      <div class="modal-footer justify-content-between align-items-center">
+        <span style="color:rgba(255,255,255,0.45);font-size:0.85rem;font-style:italic;">We typically respond within one business day.</span>
+        <div class="d-flex gap-2">
+          <button type="button" class="btn btn-outline-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" form="inquiryForm" id="submitBtn" class="btn-primary" style="padding:0.6rem 2rem;font-size:0.95rem;">
+            Submit Inquiry
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /#inquiryModal -->
+  <form
+    class="inquiry-form"
+    id="inquiryForm"
+    action="https://formspree.io/f/YOUR_FORM_ID"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+
+    <!-- 1. CONTACT INFORMATION -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">Contact Information</div>
+      <div class="form-section-sub">Tell us who you are and how to reach you.</div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" name="full_name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-field">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" name="phone" placeholder="(555) 000-0000" required>
+        </div>
+        <div class="form-field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" name="email" placeholder="jane@example.com" required>
+        </div>
+        <div class="form-field">
+          <label>Preferred Contact Method <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="preferred_contact" value="Phone" required> Phone</label>
+            <label><input type="radio" name="preferred_contact" value="Text"> Text</label>
+            <label><input type="radio" name="preferred_contact" value="Email"> Email</label>
+          </div>
+        </div>
+        <div class="form-field field-full">
+          <label>Best Time to Contact <span class="req">*</span></label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="best_time" value="Early Morning (7–9 AM)"> Early Morning (7–9 AM)</label>
+            <label><input type="checkbox" name="best_time" value="Morning (9 AM–12 PM)"> Morning (9 AM–12 PM)</label>
+            <label><input type="checkbox" name="best_time" value="Afternoon (12–5 PM)"> Afternoon (12–5 PM)</label>
+            <label><input type="checkbox" name="best_time" value="Evening (5–8 PM)"> Evening (5–8 PM)</label>
+            <label><input type="checkbox" name="best_time" value="Weekends"> Weekends</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PROJECT LOCATION -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">Project Location</div>
+      <div class="form-section-sub">Where will the work take place?</div>
+      <div class="form-grid">
+        <div class="form-field field-full">
+          <label>Street Address / Property Address <span class="req">*</span></label>
+          <input type="text" name="project_address" placeholder="123 Main St" required>
+        </div>
+        <div class="form-field">
+          <label>City <span class="req">*</span></label>
+          <input type="text" name="project_city" placeholder="City" required>
+        </div>
+        <div class="form-field">
+          <label>State &amp; ZIP <span class="req">*</span></label>
+          <input type="text" name="project_state_zip" placeholder="GA 30301" required>
+        </div>
+        <div class="form-field">
+          <label>Property Type</label>
+          <div class="select-wrap">
+            <select name="property_type">
+              <option value="">Select one…</option>
+              <option>Primary Residence</option>
+              <option>Secondary / Vacation Home</option>
+              <option>Rental Property</option>
+              <option>Commercial Property</option>
+              <option>New Construction Lot</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Is the property currently occupied?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="occupied" value="Yes"> Yes</label>
+            <label><input type="radio" name="occupied" value="No"> No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PROJECT DETAILS -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">Project Details</div>
+      <div class="form-section-sub">Help us understand the scope and nature of your project.</div>
+      <div class="form-grid one-col">
+        <div class="form-field">
+          <label>Type of Work <span class="req">*</span></label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="work_type" value="Home Renovation"> Home Renovation</label>
+            <label><input type="checkbox" name="work_type" value="Custom Home Construction"> Custom Home Construction</label>
+            <label><input type="checkbox" name="work_type" value="Storm / Insurance Repair"> Storm / Insurance Repair</label>
+            <label><input type="checkbox" name="work_type" value="Addition or Expansion"> Addition or Expansion</label>
+            <label><input type="checkbox" name="work_type" value="Major Remodel"> Major Remodel</label>
+            <label><input type="checkbox" name="work_type" value="Structural Repairs"> Structural Repairs</label>
+            <label><input type="checkbox" name="work_type" value="Outdoor Living / Hardscaping"> Outdoor Living / Hardscaping</label>
+            <label><input type="checkbox" name="work_type" value="Energy Efficiency Upgrades"> Energy Efficiency Upgrades</label>
+            <label><input type="checkbox" name="work_type" value="Aging-in-Place Improvements"> Aging-in-Place Improvements</label>
+            <label><input type="checkbox" name="work_type" value="Other"> Other</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Describe Your Project <span class="req">*</span></label>
+          <textarea name="project_description" placeholder="Please describe what you're hoping to accomplish. The more detail you can share, the better we can prepare for our conversation." required></textarea>
+          <span class="field-hint">Include areas of the home, specific goals, materials you have in mind, or any challenges you're aware of.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. BUDGET & TIMELINE -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">Budget &amp; Timeline</div>
+      <div class="form-section-sub">Sharing a range helps us match the right scope and solutions to your project.</div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Approximate Budget Range</label>
+          <div class="select-wrap">
+            <select name="budget_range">
+              <option value="">Select a range…</option>
+              <option>Under $25,000</option>
+              <option>$25,000 – $50,000</option>
+              <option>$50,000 – $100,000</option>
+              <option>$100,000 – $250,000</option>
+              <option>$250,000 – $500,000</option>
+              <option>$500,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Desired Start Date</label>
+          <div class="select-wrap">
+            <select name="desired_start">
+              <option value="">Select timing…</option>
+              <option>As soon as possible</option>
+              <option>Within 1–3 months</option>
+              <option>Within 3–6 months</option>
+              <option>6–12 months from now</option>
+              <option>More than 12 months out</option>
+              <option>Flexible / Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Is there a hard completion deadline?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="hard_deadline" value="Yes"> Yes</label>
+            <label><input type="radio" name="hard_deadline" value="No"> No</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Deadline Details (if applicable)</label>
+          <input type="text" name="deadline_details" placeholder="e.g. Must be complete before Dec 2025">
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. PROJECT PLANNING -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">Project Planning</div>
+      <div class="form-section-sub">Help us understand where you are in the planning process.</div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Current Stage of Planning</label>
+          <div class="select-wrap">
+            <select name="planning_stage">
+              <option value="">Select one…</option>
+              <option>Just exploring ideas</option>
+              <option>Have a concept, need guidance</option>
+              <option>Have plans / drawings ready</option>
+              <option>Have permits approved</option>
+              <option>Ready to start immediately</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Do you have architectural plans or drawings?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="has_plans" value="Yes, complete"> Yes, complete</label>
+            <label><input type="radio" name="has_plans" value="In progress"> In progress</label>
+            <label><input type="radio" name="has_plans" value="No"> No</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Have you worked with a contractor before?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="prior_contractor" value="Yes"> Yes</label>
+            <label><input type="radio" name="prior_contractor" value="No"> No</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Are you getting multiple bids?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="multiple_bids" value="Yes"> Yes</label>
+            <label><input type="radio" name="multiple_bids" value="No"> No</label>
+            <label><input type="radio" name="multiple_bids" value="Not sure"> Not sure</label>
+          </div>
+        </div>
+        <div class="form-field field-full">
+          <label>Additional Planning Notes</label>
+          <textarea name="planning_notes" placeholder="Anything else about your planning process we should know—permits, HOA approvals, financing status, etc."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. PHOTOS & ADDITIONAL INFO -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">Photos &amp; Additional Information</div>
+      <div class="form-section-sub">Photos of the existing space or inspiration images are a great head start.</div>
+      <div class="form-grid one-col">
+        <div class="form-field">
+          <label>Upload Photos (optional)</label>
+          <div class="file-upload-wrap">
+            <input type="file" name="photos" accept="image/*,.pdf" multiple>
+            <div class="file-upload-icon">📎</div>
+            <div class="file-upload-text"><strong>Click to choose files</strong> or drag &amp; drop here<br>JPG, PNG, PDF — up to 10 MB each</div>
+          </div>
+          <span class="field-hint">Current space, inspiration photos, drawings, or insurance documents.</span>
+        </div>
+        <div class="form-field">
+          <label>Additional Information</label>
+          <textarea name="additional_info" placeholder="Anything else you'd like us to know before we connect? Special considerations, access restrictions, prior damage, etc."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. MARKETING INFO -->
+    <div class="form-section">
+      <div class="form-section-accent"></div>
+      <div class="form-section-label">One Last Thing</div>
+      <div class="form-section-sub">We appreciate you helping us understand how people find us.</div>
+      <div class="form-grid">
+        <div class="form-field field-full">
+          <label>How did you hear about Tuten Built?</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="referral_source" value="Personal Referral"> Personal Referral</label>
+            <label><input type="checkbox" name="referral_source" value="Google Search"> Google Search</label>
+            <label><input type="checkbox" name="referral_source" value="Facebook"> Facebook</label>
+            <label><input type="checkbox" name="referral_source" value="Instagram"> Instagram</label>
+            <label><input type="checkbox" name="referral_source" value="Nextdoor"> Nextdoor</label>
+            <label><input type="checkbox" name="referral_source" value="Saw a Job Site Sign"> Saw a Job Site Sign</label>
+            <label><input type="checkbox" name="referral_source" value="Real Estate Agent"> Real Estate Agent</label>
+            <label><input type="checkbox" name="referral_source" value="Insurance Agent"> Insurance Agent</label>
+            <label><input type="checkbox" name="referral_source" value="Other"> Other</label>
+          </div>
+        </div>
+        <div class="form-field field-full">
+          <label>Referral Name (if applicable)</label>
+          <input type="text" name="referral_name" placeholder="Who referred you? We love to say thank you.">
+        </div>
+        <div class="form-field field-full">
+          <label style="display:flex;gap:0.6rem;align-items:center;text-transform:none;letter-spacing:0;font-size:1rem;font-weight:300;cursor:pointer;">
+            <input type="checkbox" name="consent_followup" value="yes" style="width:1rem;height:1rem;accent-color:var(--green);flex-shrink:0;">
+            I agree to be contacted by Tuten Built regarding my inquiry. We respect your privacy and will never share your information.
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="form-submit-row">
+      <button type="submit" class="btn-primary">Submit My Inquiry</button>
+      <p class="form-submit-note">We typically respond within one business day.</p>
+    </div>
+
+  </form>
+
+  <!-- Success message shown after Formspree redirect (or via JS) -->
+  <div class="form-success" id="formSuccess">
+    <h3>Thank You!</h3>
+    <p>Your inquiry has been received. We'll review your project details and be in touch shortly. We look forward to speaking with you.</p>
+  </div>
+
 </section>
 
 <!-- FOOTER -->
@@ -988,5 +1559,50 @@
   <div class="footer-copy">© 2026 Tuten Built, LLC. All rights reserved.</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const form    = document.getElementById('inquiryForm');
+  const success = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.classList.add('d-none');
+          success.classList.remove('d-none');
+          // scroll success message into view inside the modal body
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          submitBtn.textContent = 'Submit Inquiry';
+          submitBtn.disabled = false;
+          alert('Something went wrong. Please try again or email us directly at info@tutenbuilt.com.');
+        }
+      } catch {
+        submitBtn.textContent = 'Submit Inquiry';
+        submitBtn.disabled = false;
+        alert('Network error. Please check your connection and try again.');
+      }
+    });
+
+    // Reset form state when modal is closed
+    document.getElementById('inquiryModal').addEventListener('hidden.bs.modal', function () {
+      form.reset();
+      form.classList.remove('d-none');
+      success.classList.add('d-none');
+      submitBtn.textContent = 'Submit Inquiry';
+      submitBtn.disabled = false;
+    });
+  }
+</script>
 </body>
 </html>
