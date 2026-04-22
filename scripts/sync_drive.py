@@ -93,6 +93,7 @@ def main():
     root_id = os.environ["DRIVE_FOLDER_ID"]
     service = get_service()
     manifest = []
+    synced_paths = set()
 
     root_items = list_children(service, root_id)
 
@@ -112,6 +113,7 @@ def main():
                 dest = OUTPUT_DIR / category / media["name"]
                 print(f"  ↓ {category}/{media['name']}")
                 download(service, media["id"], dest)
+                synced_paths.add(dest.resolve())
                 manifest.append(
                     {
                         "src": f"images/{category}/{media['name']}",
@@ -127,6 +129,7 @@ def main():
             dest = OUTPUT_DIR / name
             print(f"  ↓ {name}")
             download(service, item["id"], dest)
+            synced_paths.add(dest.resolve())
             manifest.append(
                 {
                     "src": f"images/{name}",
@@ -135,6 +138,17 @@ def main():
                     "title": to_title(name),
                 }
             )
+
+    # Remove local files that no longer exist in Drive
+    if OUTPUT_DIR.exists():
+        for existing in OUTPUT_DIR.rglob("*"):
+            if existing.is_file() and existing.resolve() not in synced_paths:
+                print(f"  ✕ removing {existing} (deleted from Drive)")
+                existing.unlink()
+        # Clean up empty subdirectories
+        for d in sorted(OUTPUT_DIR.rglob("*"), reverse=True):
+            if d.is_dir() and not any(d.iterdir()):
+                d.rmdir()
 
     MANIFEST_PATH.write_text(json.dumps(manifest, indent=2))
     print(f"\nDone. {len(manifest)} file(s) synced → portfolio-data.json written.")
