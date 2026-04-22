@@ -584,6 +584,190 @@
   .modal-section { margin-bottom: 2rem; }
   .modal-section:last-of-type { margin-bottom: 0; }
 
+  /* PORTFOLIO */
+  .portfolio {
+    background: var(--navy);
+    padding: 6rem 4rem;
+  }
+
+  .portfolio-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+  }
+
+  .portfolio-header .section-title { color: #fff; }
+  .portfolio-header p { color: rgba(255,255,255,0.6); font-size: 1.15rem; line-height: 1.8; font-weight: 300; }
+
+  .portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    padding: 0.5rem 1.5rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--navy);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    background: var(--navy-mid);
+  }
+
+  .portfolio-item.hidden { display: none; }
+
+  .portfolio-item img,
+  .portfolio-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .portfolio-item:hover img,
+  .portfolio-item:hover video { transform: scale(1.06); }
+
+  /* placeholder tile shown when no real media is provided */
+  .portfolio-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--navy-mid) 0%, #2c3e52 100%);
+    border: 1px dashed rgba(129,186,35,0.3);
+    gap: 0.75rem;
+    transition: transform 0.5s ease;
+  }
+
+  .portfolio-item:hover .portfolio-placeholder { transform: scale(1.04); }
+
+  .portfolio-placeholder .ph-icon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+  }
+
+  .portfolio-placeholder .ph-label {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(36,46,59,0.9) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.35s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.25rem;
+  }
+
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+  .portfolio-overlay .p-cat {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .portfolio-overlay .p-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .portfolio-overlay .p-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(129,186,35,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--navy);
+  }
+
+  /* lightbox modal */
+  .lightbox-modal .modal-content { background: #0a0e14; border: none; }
+  .lightbox-modal .modal-body { padding: 0; position: relative; }
+  .lightbox-modal .btn-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 10;
+    filter: invert(1) grayscale(1) brightness(2);
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    padding: 0.5rem;
+  }
+  .lightbox-modal img,
+  .lightbox-modal video {
+    width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+  }
+  .lightbox-modal .lb-caption {
+    padding: 1rem 1.5rem;
+    background: #0a0e14;
+  }
+  .lightbox-modal .lb-caption .p-cat { color: var(--green-light); font-style: italic; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .lightbox-modal .lb-caption .p-title { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-top: 0.2rem; }
+
+  @media (max-width: 900px) {
+    .portfolio { padding: 4rem 1.5rem; }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+
   /* FOOTER */
   footer {
     background: #161d26;
@@ -646,6 +830,7 @@
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#values">Values</a></li>
+    <li><a href="#portfolio">Our Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#" data-bs-toggle="modal" data-bs-target="#inquiryModal">Get a Quote</a></li>
   </ul>
@@ -773,6 +958,52 @@
   </div>
 </section>
 
+<!-- PORTFOLIO -->
+<!--
+  HOW TO ADD REAL PHOTOS & VIDEOS:
+  Each .portfolio-item has a data-src and data-type attribute.
+  - For images: set data-type="image" and data-src="path/to/photo.jpg"
+    Replace the <div class="portfolio-placeholder"> with <img src="path/to/photo.jpg" alt="description">
+  - For videos: set data-type="video" and data-src="path/to/video.mp4"
+    Replace the placeholder div with <video src="path/to/video.mp4" muted loop playsinline></video>
+  The lightbox will automatically use data-src to display full-size media.
+-->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header">
+    <span class="section-label">Our Work</span>
+    <h2 class="section-title">Built with Purpose. Finished with Pride.</h2>
+    <div class="divider" style="margin: 1.5rem auto;"></div>
+    <p>A look at some of the homes and spaces we've had the privilege to restore, rebuild, and renew.</p>
+  </div>
+
+  <div class="portfolio-filters">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="restore">Restore</button>
+    <button class="filter-btn" data-filter="rebuild">Rebuild</button>
+    <button class="filter-btn" data-filter="renew">Renew</button>
+  </div>
+
+  <div class="portfolio-grid" id="portfolioGrid">
+    <p id="portfolioLoading" style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.35);font-style:italic;padding:3rem 0;">Loading projects…</p>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="modal fade lightbox-modal" id="lightboxModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div id="lightboxMedia"></div>
+        <div class="lb-caption">
+          <div class="p-cat" id="lightboxCat"></div>
+          <div class="p-title" id="lightboxTitle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FOUNDER -->
 <section class="founder" id="about">
   <div class="founder-inner">
@@ -836,7 +1067,7 @@
         </div>
 
         <form id="inquiryForm"
-              action="https://formspree.io/f/YOUR_FORM_ID"
+              action="https://localhost:7001/api/inquiry"
               method="POST"
               enctype="multipart/form-data"
               novalidate>
@@ -1123,7 +1354,79 @@
       }
     });
 
-    // Reset form state when modal is closed
+    // Portfolio — load from manifest generated by sync script
+  const lightboxModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+  const lightboxMedia = document.getElementById('lightboxMedia');
+  const lightboxCat   = document.getElementById('lightboxCat');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  function buildCard(item) {
+    const cat = capitalize(item.category);
+    const media = item.type === 'video'
+      ? `<video src="${item.src}" muted loop playsinline></video>`
+      : `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
+    const playBtn = item.type === 'video' ? `<div class="p-play">&#9654;</div>` : '';
+    return `
+      <div class="portfolio-item"
+           data-category="${item.category}"
+           data-type="${item.type}"
+           data-src="${item.src}"
+           data-title="${item.title}"
+           data-cat="${cat}">
+        ${media}
+        <div class="portfolio-overlay">
+          ${playBtn}
+          <span class="p-cat">${cat}</span>
+          <div class="p-title">${item.title}</div>
+        </div>
+      </div>`;
+  }
+
+  function attachHandlers() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
+        });
+      });
+    });
+
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('click', function() {
+        const { src, type, title, cat } = this.dataset;
+        lightboxCat.textContent   = cat;
+        lightboxTitle.textContent = title;
+        lightboxMedia.innerHTML   = type === 'video'
+          ? `<video src="${src}" controls autoplay style="width:100%;max-height:80vh;"></video>`
+          : `<img src="${src}" alt="${title}">`;
+        lightboxModal.show();
+      });
+    });
+  }
+
+  document.getElementById('lightboxModal').addEventListener('hidden.bs.modal', () => {
+    lightboxMedia.innerHTML = '';
+  });
+
+  fetch('portfolio-data.json')
+    .then(r => r.ok ? r.json() : [])
+    .catch(() => [])
+    .then(items => {
+      const grid = document.getElementById('portfolioGrid');
+      if (!items.length) {
+        grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:rgba(255,255,255,0.35);font-style:italic;padding:3rem 0;">Project photos and videos coming soon.</p>`;
+        return;
+      }
+      grid.innerHTML = items.map(buildCard).join('');
+      attachHandlers();
+    });
+
+  // Reset form state when modal is closed
     document.getElementById('inquiryModal').addEventListener('hidden.bs.modal', function () {
       form.reset();
       form.classList.remove('d-none');
